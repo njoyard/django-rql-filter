@@ -1,0 +1,21 @@
+sudo: false
+env:
+  global:
+    - DJANGO_DEBUG=True
+    - DJANGO_SETTINGS_MODULE=rql_filter.tests.settings
+  matrix:
+    - DJANGO_VERSION=1.8
+    - DJANGO_VERSION=1.9
+    - DJANGO_VERSION=1.10
+language: python
+python:
+  - '2.7'
+install:
+  - pip install django==$DJANGO_VERSION
+  - pip install -e .[testing]
+before_script:
+  - make -C rql_filter/parser
+script:
+  - pep8 . --exclude=parser.py --ignore E128
+  - flake8 . --exclude=parser.py --ignore E128
+  - py.test

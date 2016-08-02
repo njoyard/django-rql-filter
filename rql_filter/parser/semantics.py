@@ -6,18 +6,18 @@ from django.db.models import Q
 class RQLSemantics:
 
     OPERATORS = {
-        '==':    'eq',
-        '!=':    'ne',
-        '=ne=':  'ne',
-        '<=':    'le',
-        '=le=':  'le',
-        '<':     'lt',
-        '=lt=':  'lt',
-        '>=':    'ge',
-        '=ge=':  'ge',
-        '>':     'gt',
-        '=gt=':  'gt',
-        '=in=':  'in',
+        '==': 'eq',
+        '!=': 'ne',
+        '=ne=': 'ne',
+        '<=': 'le',
+        '=le=': 'le',
+        '<': 'lt',
+        '=lt=': 'lt',
+        '>=': 'ge',
+        '=ge=': 'ge',
+        '>': 'gt',
+        '=gt=': 'gt',
+        '=in=': 'in',
         '=out=': 'out',
     }
 
