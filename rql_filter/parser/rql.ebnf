@@ -1,0 +1,78 @@
+(*
+ * Grako EBNF grammar for RQL
+ *
+ * Whitespace is forbidden in RQL (except in values), so all rules
+ * are uppercased.
+ *)
+
+start =
+    OREXPRESSION $
+    ;
+
+OREXPRESSION =
+    ';'.{ ANDEXPRESSION }
+    ;
+
+ANDEXPRESSION =
+    ','.{ CONSTRAINT }
+    ;
+
+CONSTRAINT =
+    GROUP | COMPARISON
+    ;
+
+GROUP =
+    '(' @:OREXPRESSION ')'
+    ;
+
+COMPARISON =
+    SELECTOR OPERATOR ARGUMENTS
+    ;
+
+SELECTOR =
+    /[a-zA-Z_][a-zA-Z0-9_.]*/
+    ;
+
+OPERATOR =
+    FIQLOPERATOR | RSQLOPERATOR
+    ;
+
+FIQLOPERATOR =
+    '==' | '!=' | '=lt=' | '=gt=' | '=le=' | '=ge=' | '=in=' | '=out='
+    ;
+
+RSQLOPERATOR =
+    '<=' | '>=' | '<' | '>'
+    ;
+
+ARGUMENTS =
+    VALUELIST | VALUE
+    ;
+
+VALUELIST =
+    '(' @:','.{ VALUE } ')'
+    ;
+
+VALUE =
+    UNRESERVED | SINGLEQUOTED | DOUBLEQUOTED
+    ;
+
+UNRESERVED =
+    /[^\"'();,=!~<>]+/
+    ;
+
+SINGLEQUOTED =
+    "'" @:SINGLEQUOTEDCHARS "'"
+    ;
+
+SINGLEQUOTEDCHARS =
+    /([^\\']|\\')*/
+    ;
+
+DOUBLEQUOTED =
+    '"' @:DOUBLEQUOTEDCHARS '"'
+    ;
+
+DOUBLEQUOTEDCHARS =
+    /([^\\"]|\\")*/
+    ;

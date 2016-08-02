@@ -18,7 +18,7 @@ setup(
     packages = ['rql_filter'],
     long_description = read('README.md'),
     install_requires = [
-        'rql>=0.34,<1',
+        'grako>=3,<4',
     ],
     classifiers = [
         "Development Status :: 3 - Alpha",
