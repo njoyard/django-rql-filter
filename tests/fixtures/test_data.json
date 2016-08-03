@@ -1,0 +1,43 @@
+[
+{
+  "fields": {
+    "name": "foo-parent"
+  },
+  "pk": 1,
+  "model": "tests.parent"
+},
+{
+  "fields": {
+    "name": "bar-parent"
+  },
+  "pk": 2,
+  "model": "tests.parent"
+},
+{
+  "fields": {
+    "name": "foo",
+    "number": 100,
+    "parent": 1
+  },
+  "pk": 1,
+  "model": "tests.child"
+},
+{
+  "fields": {
+    "name": "bar",
+    "number": 200,
+    "parent": 1
+  },
+  "pk": 2,
+  "model": "tests.child"
+},
+{
+  "fields": {
+    "name": "baz",
+    "number": 0,
+    "parent": 2
+  },
+  "pk": 3,
+  "model": "tests.child"
+}
+]

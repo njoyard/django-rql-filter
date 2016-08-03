@@ -22,9 +22,10 @@ setup(
     ],
     extras_require={
         'testing': [
+            'djangorestframework>=3,<4',
             'flake8>=2,<3',
-            'pep8>=1,<2',
             'pytest>=2,<3',
+            'pytest-django>=2,<3',
         ]
     },
     classifiers=[

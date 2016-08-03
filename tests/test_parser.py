@@ -2,8 +2,8 @@
 
 from django.db.models import Q
 
-from ..parser.parser import RQLParser
-from ..parser.semantics import RQLSemantics
+from rql_filter.parser.parser import RQLParser
+from rql_filter.parser.semantics import RQLSemantics
 
 
 parser = RQLParser(semantics=RQLSemantics())
@@ -26,7 +26,7 @@ def test_fiql_operators():
     )
     assert_query(
         "field=le=value",
-        "(AND: (u'field__le', u'value'))"
+        "(AND: (u'field__lte', u'value'))"
     )
     assert_query(
         "field=lt=value",
@@ -34,7 +34,7 @@ def test_fiql_operators():
     )
     assert_query(
         "field=ge=value",
-        "(AND: (u'field__ge', u'value'))"
+        "(AND: (u'field__gte', u'value'))"
     )
     assert_query(
         "field=gt=value",
@@ -53,7 +53,7 @@ def test_fiql_operators():
 def test_rsql_operators():
     assert_query(
         "field<=value",
-        "(AND: (u'field__le', u'value'))"
+        "(AND: (u'field__lte', u'value'))"
     )
     assert_query(
         "field<value",
@@ -61,7 +61,7 @@ def test_rsql_operators():
     )
     assert_query(
         "field>=value",
-        "(AND: (u'field__ge', u'value'))"
+        "(AND: (u'field__gte', u'value'))"
     )
     assert_query(
         "field>value",
