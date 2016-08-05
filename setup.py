@@ -18,11 +18,12 @@ setup(
     packages=['rql_filter'],
     long_description=read('README.md'),
     install_requires=[
+        'djangorestframework>=3,<4',
         'grako>=3,<4',
     ],
     extras_require={
         'testing': [
-            'djangorestframework>=3,<4',
+            'django-responsediff>=0.6,<0.7',
             'flake8>=2,<3',
             'pytest>=2,<3',
             'pytest-django>=2,<3',
