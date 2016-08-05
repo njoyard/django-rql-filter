@@ -2,4 +2,5 @@
 *.pyc
 .cache
 tests/test.db
+dist
 
