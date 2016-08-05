@@ -53,14 +53,14 @@ composed by a field name, an operator and a value.
 | `=out=`     | Does not belong to set   | `name=out=(bob,kate)`  |
 
 Comparisons can traverse model relations by separating field names with a double
-underscore: `father__name=bob`.
+underscore: `father__name==bob`.
 
 Values must be quoted with single or double quotes when they include special
-characters or spaces: `name="bob katz"`.
+characters or spaces: `name=="bob katz"`.
 
 Comparisons may be combined using `;` for a logical AND, and `,` for a logical
-OR: `name="bob";age>=30`.  AND has priority over OR; grouping is available using
-parentheses: `name="bob";(age>=30,age<3)`.
+OR: `name=="bob";age>=30`.  AND has priority over OR; grouping is available
+using parentheses: `name=="bob";(age>=30,age<3)`.
 
 **Note:** RQL/RSQL/FIQL support is still incomplete, it will be enhanced over
 time.
