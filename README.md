@@ -4,7 +4,7 @@
 
 This app implements a RQL/RSQL/FIQL filter backend for
 [django-rest-framework](http://www.django-rest-framework.org) and enables
-passing arbitrary conditional expressions to filter 
+passing arbitrary conditional expressions to filter entities.
 
 ## Installation
 
@@ -47,8 +47,8 @@ composed by a field name, an operator and a value.
 | `!=`        | Not equal to             | `name!=bob`            |
 | `<` `=lt=`  | Less than                | `age<30`  `age=lt=30`  |
 | `<=` `=le=` | Less than or equal to    | `age<=30`  `age=le=30` |
-| `>` `=gt=`  | Greater than             | `age<30`  `age=lt=30`  |
-| `>=` `=ge=` | Greater than or equal to | `age<=30`  `age=le=30` |
+| `>` `=gt=`  | Greater than             | `age>30`  `age=gt=30`  |
+| `>=` `=ge=` | Greater than or equal to | `age>=30`  `age=ge=30` |
 | `=in=`      | Belongs to set           | `name=in=(bob,kate)`   |
 | `=out=`     | Does not belong to set   | `name=out=(bob,kate)`  |
 
