@@ -52,6 +52,9 @@ composed by a field name, an operator and a value.
 | `=in=`      | Belongs to set           | `name=in=(bob,kate)`   |
 | `=out=`     | Does not belong to set   | `name=out=(bob,kate)`  |
 
+Comparisons can traverse model relations by separating field names with a double
+underscore: `father__name=bob`.
+
 Values must be quoted with single or double quotes when they include special
 characters or spaces: `name="bob katz"`.
 
