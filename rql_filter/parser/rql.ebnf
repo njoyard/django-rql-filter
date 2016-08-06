@@ -10,11 +10,11 @@ start =
     ;
 
 OREXPRESSION =
-    ';'.{ ANDEXPRESSION }
+    ','.{ ANDEXPRESSION }
     ;
 
 ANDEXPRESSION =
-    ','.{ CONSTRAINT }
+    ';'.{ CONSTRAINT }
     ;
 
 CONSTRAINT =
@@ -58,7 +58,7 @@ VALUE =
     ;
 
 UNRESERVED =
-    /[^\"'();,=!~<>]+/
+    /[^\"'();,=!~<> ]+/
     ;
 
 SINGLEQUOTED =

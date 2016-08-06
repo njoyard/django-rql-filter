@@ -41,12 +41,12 @@ class RQLTestMixin(object):
         self.assert_rql_result('number>=100', ['foo', 'bar'])
 
     def test_and(self):
-        self.assert_rql_result('name==foo,number>=100', ['foo'])
-        self.assert_rql_result('name==foo,number>=200', [])
+        self.assert_rql_result('name==foo;number>=100', ['foo'])
+        self.assert_rql_result('name==foo;number>=200', [])
 
     def test_or(self):
-        self.assert_rql_result('name==foo;number>=100', ['foo', 'bar'])
-        self.assert_rql_result('name==foo;number>200', ['foo'])
+        self.assert_rql_result('name==foo,number>=100', ['foo', 'bar'])
+        self.assert_rql_result('name==foo,number>200', ['foo'])
 
     def test_relation(self):
         self.assert_rql_result('parent__name==foo-parent', ['foo', 'bar'])

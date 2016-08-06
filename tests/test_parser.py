@@ -6,7 +6,7 @@ from rql_filter.parser.parser import RQLParser
 from rql_filter.parser.semantics import RQLSemantics
 
 
-parser = RQLParser(semantics=RQLSemantics())
+parser = RQLParser(semantics=RQLSemantics(), whitespace='')
 
 
 def assert_query(rql, qstr):
@@ -93,26 +93,26 @@ def test_in_out():
 
 def test_and():
     assert_query(
-        "field1==foo,field2==bar,field3==baz",
+        "field1==foo;field2==bar;field3==baz",
         "(AND: (u'field1', u'foo'), (u'field2', u'bar'), (u'field3', u'baz'))"
     )
 
 
 def test_or():
     assert_query(
-        "field1==foo;field2==bar;field3==baz",
+        "field1==foo,field2==bar,field3==baz",
         "(OR: (u'field1', u'foo'), (u'field2', u'bar'), (u'field3', u'baz'))"
     )
 
 
 def test_priority():
     assert_query(
-        "field1==foo;field2==bar,field3==baz",
+        "field1==foo,field2==bar;field3==baz",
         "(OR: (u'field1', u'foo'), (AND: (u'field2', u'bar'), (u'field3', u'baz')))"  # noqa
     )
 
     assert_query(
-        "field1==foo,field2==bar;field3==baz",
+        "field1==foo;field2==bar,field3==baz",
         "(OR: (AND: (u'field1', u'foo'), (u'field2', u'bar')), (u'field3', u'baz'))"  # noqa
     )
 
@@ -127,18 +127,18 @@ def test_grouping():
         "(AND: (u'field', u'value'))"
     )
     assert_query(
-        "(field1==foo;field2==bar),field3==baz",
+        "(field1==foo,field2==bar);field3==baz",
         "(AND: (OR: (u'field1', u'foo'), (u'field2', u'bar')), (u'field3', u'baz'))"  # noqa
     )
     assert_query(
-        "field1==foo,(field2==bar;field3==baz)",
+        "field1==foo;(field2==bar,field3==baz)",
         "(AND: (u'field1', u'foo'), (OR: (u'field2', u'bar'), (u'field3', u'baz')))"  # noqa
     )
     assert_query(
-        "(field1==foo,(field2==bar,(field3==baz,(field4==bang))))",
+        "(field1==foo;(field2==bar;(field3==baz;(field4==bang))))",
         "(AND: (u'field1', u'foo'), (u'field2', u'bar'), (u'field3', u'baz'), (u'field4', u'bang'))"  # noqa
     )
     assert_query(
-        "(field1==foo;(field2==bar,(field3==baz;(field4==bang))))",
+        "(field1==foo,(field2==bar;(field3==baz,(field4==bang))))",
         "(OR: (u'field1', u'foo'), (AND: (u'field2', u'bar'), (OR: (u'field3', u'baz'), (u'field4', u'bang'))))"  # noqa
     )

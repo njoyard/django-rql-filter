@@ -17,7 +17,7 @@ from grako.parsing import graken, Parser
 from grako.util import re, RE_FLAGS, generic_main  # noqa
 
 
-__version__ = (2016, 8, 2, 6, 0, 5, 1)
+__version__ = (2016, 8, 6, 7, 46, 58, 5)
 
 __all__ = [
     'RQLParser',
@@ -60,7 +60,7 @@ class RQLParser(Parser):
     def _OREXPRESSION_(self):
 
         def sep0():
-            self._token(';')
+            self._token(',')
 
         def block0():
             self._ANDEXPRESSION_()
@@ -70,7 +70,7 @@ class RQLParser(Parser):
     def _ANDEXPRESSION_(self):
 
         def sep0():
-            self._token(',')
+            self._token(';')
 
         def block0():
             self._CONSTRAINT_()
@@ -180,7 +180,7 @@ class RQLParser(Parser):
 
     @graken()
     def _UNRESERVED_(self):
-        self._pattern(r'[^\"\'();,=!~<>]+')
+        self._pattern(r'[^\"\'();,=!~<> ]+')
 
     @graken()
     def _SINGLEQUOTED_(self):

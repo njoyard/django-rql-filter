@@ -58,9 +58,9 @@ underscore: `father__name==bob`.
 Values must be quoted with single or double quotes when they include special
 characters or spaces: `name=="bob katz"`.
 
-Comparisons may be combined using `;` for a logical AND, and `,` for a logical
-OR: `name=="bob";age>=30`.  AND has priority over OR; grouping is available
-using parentheses: `name=="bob";(age>=30,age<3)`.
+Comparisons may be combined using logical operators:  `;` for a logical AND, and
+`,` for a logical OR: `name=="bob";age>=30`.  AND has priority over OR; grouping
+ is available using parentheses: `name=="bob" and (age>=30 or age<3)`.
 
 **Note:** RQL/RSQL/FIQL support is still incomplete, it will be enhanced over
 time.

@@ -16,7 +16,7 @@ class RQLFilterBackend(BaseFilterBackend):
     name of the querystring parameter used.
     """
 
-    parser = RQLParser(semantics=RQLSemantics())
+    parser = RQLParser(semantics=RQLSemantics(), whitespace='')
     query_param = getattr(settings, 'RQL_FILTER_QUERY_PARAM', 'q')
 
     def filter_queryset(self, request, queryset, view):
