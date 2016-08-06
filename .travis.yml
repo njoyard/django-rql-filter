@@ -18,3 +18,5 @@ script:
   - flake8 . --exclude=parser.py,migrations
   - django-admin migrate
   - py.test
+after_success:
+  - codecov

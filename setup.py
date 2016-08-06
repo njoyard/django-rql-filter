@@ -23,9 +23,11 @@ setup(
     ],
     extras_require={
         'testing': [
+            'codecov>=2,<3',
             'django-responsediff>=0.6,<0.7',
             'flake8>=2,<3',
             'pytest>=2,<3',
+            'pytest-cov>=2,<3',
             'pytest-django>=2,<3',
         ]
     },
