@@ -16,7 +16,7 @@ setup(
     keywords="django filter drf rest rql rsql fiql",
     url="https://github.com/njoyard/django-rql-filter",
     packages=['rql_filter'],
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     install_requires=[
         'djangorestframework>=3,<4',
         'grako>=3,<4',
