@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name="django-rql-filter",
-    version="0.1.0",
+    version="0.1.1",
     author="Nicolas Joyard",
     author_email="joyard.nicolas@gmail.com",
     description=("A RQL-enabled filter backend for django-rest-framework"),
