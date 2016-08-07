@@ -8,14 +8,17 @@ def read(fname):
 
 setup(
     name="django-rql-filter",
-    version="0.1.2",
+    version="0.1.3",
     author="Nicolas Joyard",
     author_email="joyard.nicolas@gmail.com",
     description=("A RQL-enabled filter backend for django-rest-framework"),
     license="MIT",
     keywords="django filter drf rest rql rsql fiql",
     url="https://github.com/njoyard/django-rql-filter",
-    packages=['rql_filter'],
+    packages=[
+        'rql_filter',
+        'rql_filter.parser'
+    ],
     long_description=read('README.rst'),
     install_requires=[
         'djangorestframework>=3,<4',
