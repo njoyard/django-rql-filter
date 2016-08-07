@@ -19,7 +19,7 @@ setup(
     long_description=read('README.rst'),
     install_requires=[
         'djangorestframework>=3,<4',
-        'grako>=3,<4',
+        'grako>=3.12,<3.13',
     ],
     extras_require={
         'testing': [

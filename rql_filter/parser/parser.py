@@ -13,11 +13,12 @@
 
 from __future__ import print_function, division, absolute_import, unicode_literals
 
+from grako.buffering import Buffer
 from grako.parsing import graken, Parser
 from grako.util import re, RE_FLAGS, generic_main  # noqa
 
 
-__version__ = (2016, 8, 6, 7, 46, 58, 5)
+__version__ = (2016, 8, 7, 10, 22, 21, 6)
 
 __all__ = [
     'RQLParser',
@@ -26,6 +27,28 @@ __all__ = [
 ]
 
 KEYWORDS = set([])
+
+
+class RQLBuffer(Buffer):
+    def __init__(self,
+                 text,
+                 whitespace=None,
+                 nameguard=None,
+                 comments_re=None,
+                 eol_comments_re=None,
+                 ignorecase=None,
+                 namechars='',
+                 **kwargs):
+        super(RQLBuffer, self).__init__(
+            text,
+            whitespace=whitespace,
+            nameguard=nameguard,
+            comments_re=comments_re,
+            eol_comments_re=eol_comments_re,
+            ignorecase=ignorecase,
+            namechars=namechars,
+            **kwargs
+        )
 
 
 class RQLParser(Parser):
@@ -51,6 +74,11 @@ class RQLParser(Parser):
             **kwargs
         )
 
+    def parse(self, text, *args, **kwargs):
+        if not isinstance(text, Buffer):
+            text = RQLBuffer(text, **kwargs)
+        return super(RQLParser, self).parse(text, *args, **kwargs)
+
     @graken()
     def _start_(self):
         self._OREXPRESSION_()
@@ -64,7 +92,7 @@ class RQLParser(Parser):
 
         def block0():
             self._ANDEXPRESSION_()
-        self._positive_closure(block0, prefix=sep0)
+        self._closure(block0, sep=sep0)
 
     @graken()
     def _ANDEXPRESSION_(self):
@@ -74,7 +102,7 @@ class RQLParser(Parser):
 
         def block0():
             self._CONSTRAINT_()
-        self._positive_closure(block0, prefix=sep0)
+        self._closure(block0, sep=sep0)
 
     @graken()
     def _CONSTRAINT_(self):
@@ -163,7 +191,7 @@ class RQLParser(Parser):
 
         def block1():
             self._VALUE_()
-        self._positive_closure(block1, prefix=sep1)
+        self._closure(block1, sep=sep1)
         self.name_last_node('@')
         self._token(')')
 
